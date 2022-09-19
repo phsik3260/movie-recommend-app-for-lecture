@@ -8,17 +8,27 @@
     <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
     <!-- Import ReactDOM -->
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- Import Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <script>
+    <script type="text/babel">
       const root = document.getElementById("root");
-      const title = React.createElement("h3", null, "Total clicks: 0");
+      /*
+      const title = React.createElement("h3", { id: "title" }, "Total clicks: 0");
+      */
+      const Title = <h3 id="title">Total clicks: 0</h3>;
+      /*
       const btn = React.createElement(
         "button",
-        { onClick: () => console.log("clicked") }, // element의 property를 통해 event를 사용할 수 있다.
+        { onClick: () => console.log("clicked") },
         "Click me"
       );
+      */
+      const Btn = (
+        <button onClick={() => console.log("clicked")}>Click me</button>
+      );
 
-      const container = React.createElement("div", null, [title, btn]); // 여러 element들을 배열로 묶어 하나의 element로 rendering한다.
+      const container = React.createElement("div", null, [Title, Btn]);
 
       ReactDOM.render(container, root);
     </script>
