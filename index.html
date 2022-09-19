@@ -14,23 +14,26 @@
     <script type="text/babel">
       const root = document.getElementById("root");
 
-      const Title = () => <h3 id="title">Total clicks: 0</h3>;
-      const Btn = () => {
-        return <button onClick={() => console.log("clicked")}>Click me</button>;
-      };
+      let counter = 0;
 
-      // JSX Component
-      // 1. 함수의 형태로 만들어 결과값을 return한다.
-      // 2. 첫 글자는 반드시 대문자로 작성한다. (HTML element와의 혼동을 피하기 위함)
+      const countUp = () => {
+        counter = counter + 1;
+        ReactDOM.render(<Container />, root);
+        // countUp function이 호출될 때 Container component를 rendering함으로써 UI에 변경 사항을 적용할 수 있음.
+        // 이런 방식으로 UI를 업데이트할 수 있으나, 앞으로 추가할 여러 기능들에 매번 이 코드를 덧붙여 주어야 한다는 번거로움이 생김.
+      };
 
       const Container = () => (
         <>
-          <Title />
-          <Btn />
+          <h3 id="title">Total clicks: {counter}</h3>
+          {/* JSX에 변수를 연결하는 방법. */}
+          <button onClick={countUp}>Click me</button>
         </>
       );
 
       ReactDOM.render(<Container />, root);
+      // app이 실행될 때 ReactDOM에 의해 root 이하에 Container component가 한 번 rendering되는데 그때의 변수 counter는 0.
+      // countUp function에 의해 button을 클릭 시 counter의 값이 변경되지만, Container component는 rerendering되지 않으므로 UI는 그대로.
     </script>
   </body>
 </html>
