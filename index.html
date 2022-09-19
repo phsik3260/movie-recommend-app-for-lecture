@@ -15,12 +15,13 @@
       const root = document.getElementById("root");
 
       const App = () => {
-        const [counter, setCounter] = React.useState(0); // counter의 초깃값은 0.
+        const [counter, setCounter] = React.useState(0);
 
         const countUp = () => {
-          setCounter(counter + 1);
-          // counter의 값을 변경한 후, 그 값과 함께 해당 Component 전체를 rerendering한다.
-          // 해당 Component 전체를 rerendering하지만, React는 오직 업데이트가 필요한 부분만을 선택하여 rerendering한다.
+          // setCounter(counter + 1);
+          setCounter((current) => current + 1);
+          // setState() 내부의 콜백 함수 첫 번째 인자에는 현재의 state 값이 주어진다.
+          // 이 방식은 첫 번째 인자에는 반드시 현재의 state 값이 주어진다는 것이 확실히 보장되기 때문에 훨씬 더 안전한 방법이다.
         };
 
         return (
