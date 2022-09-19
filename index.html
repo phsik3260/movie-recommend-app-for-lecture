@@ -13,24 +13,24 @@
 
     <script type="text/babel">
       const root = document.getElementById("root");
-      /*
-      const title = React.createElement("h3", { id: "title" }, "Total clicks: 0");
-      */
-      const Title = <h3 id="title">Total clicks: 0</h3>;
-      /*
-      const btn = React.createElement(
-        "button",
-        { onClick: () => console.log("clicked") },
-        "Click me"
-      );
-      */
-      const Btn = (
-        <button onClick={() => console.log("clicked")}>Click me</button>
+
+      const Title = () => <h3 id="title">Total clicks: 0</h3>;
+      const Btn = () => {
+        return <button onClick={() => console.log("clicked")}>Click me</button>;
+      };
+
+      // JSX Component
+      // 1. 함수의 형태로 만들어 결과값을 return한다.
+      // 2. 첫 글자는 반드시 대문자로 작성한다. (HTML element와의 혼동을 피하기 위함)
+
+      const Container = () => (
+        <>
+          <Title />
+          <Btn />
+        </>
       );
 
-      const container = React.createElement("div", null, [Title, Btn]);
-
-      ReactDOM.render(container, root);
+      ReactDOM.render(<Container />, root);
     </script>
   </body>
 </html>
