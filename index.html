@@ -11,13 +11,16 @@
 
     <script>
       const root = document.getElementById("root");
-      const span = React.createElement(
-        "span", // 생성할 element.
-        { id: "sexy-span", style: { color: "red" } }, // element의 properties.
-        "Hello, I'm a span." // element의 내용.
-      ); // React를 활용하여 element를 생성한다.
+      const title = React.createElement("h3", null, "Total clicks: 0");
+      const btn = React.createElement(
+        "button",
+        { onClick: () => console.log("clicked") }, // element의 property를 통해 event를 사용할 수 있다.
+        "Click me"
+      );
 
-      ReactDOM.render(span, root); // ReactDOM을 활용하여 span을 root 이하에 rendering한다.
+      const container = React.createElement("div", null, [title, btn]); // 여러 element들을 배열로 묶어 하나의 element로 rendering한다.
+
+      ReactDOM.render(container, root);
     </script>
   </body>
 </html>
