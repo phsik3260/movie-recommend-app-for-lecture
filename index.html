@@ -22,14 +22,13 @@
         return (
           <>
             <h1>Super Converter</h1>
-
             <select value={index} onChange={changeSelect}>
               <option value="0">Minutes & Hours</option>
               <option value="1">Kms & Miles</option>
             </select>
             <hr />
             {index === "0" ? <MinutesToHours /> : null}
-            {index === "1" ? <KmstoMiles /> : null}
+            {index === "1" ? <KmsToMiles /> : null}
           </>
         );
       };
@@ -37,14 +36,9 @@
         const [amount, setAmount] = React.useState(0);
         const [flipped, setFlipped] = React.useState(false);
 
-        const onChange = (event) => {
-          setAmount(event.target.value);
-        };
+        const onChange = (event) => setAmount(event.target.value);
         const reset = () => setAmount(0);
-        const flip = () => {
-          reset();
-          setFlipped((curr) => !curr);
-        };
+        const flip = () => setFlipped((curr) => !curr);
 
         return (
           <>
@@ -53,8 +47,8 @@
               <label htmlFor="minutes">Minutes</label>
               <input
                 id="minutes"
-                placeholder="Minutes"
                 type="number"
+                placeholder="Minutes"
                 value={flipped ? amount * 60 : amount}
                 onChange={onChange}
                 disabled={flipped}
@@ -64,8 +58,8 @@
               <label htmlFor="hours">Hours</label>
               <input
                 id="hours"
-                placeholder="Hours"
                 type="number"
+                placeholder="Hours"
                 value={flipped ? amount : amount / 60}
                 onChange={onChange}
                 disabled={!flipped}
@@ -76,10 +70,41 @@
           </>
         );
       };
-      const KmstoMiles = () => {
+      const KmsToMiles = () => {
+        const [amount, setAmount] = React.useState(0);
+        const [flipped, setFlipped] = React.useState(false);
+
+        const onChange = (event) => setAmount(event.target.value);
+        const reset = () => setAmount(0);
+        const flip = () => setFlipped((curr) => !curr);
+
         return (
           <>
             <h3>Kms to Miles</h3>
+            <div>
+              <label htmlFor="kms">Kms</label>
+              <input
+                id="kms"
+                type="number"
+                placeholder="Kms"
+                value={flipped ? amount / 0.621371 : amount}
+                onChange={onChange}
+                disabled={flipped}
+              />
+            </div>
+            <div>
+              <label htmlFor="miles">Miles</label>
+              <input
+                id="miles"
+                type="number"
+                placeholder="Miles"
+                value={flipped ? amount : amount * 0.621371}
+                onChange={onChange}
+                disabled={!flipped}
+              />
+            </div>
+            <button onClick={reset}>Reset</button>
+            <button onClick={flip}>Flip</button>
           </>
         );
       };
