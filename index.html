@@ -15,12 +15,17 @@
       const root = document.getElementById("root");
 
       const App = () => {
-        const [minutes, setMinutes] = React.useState(0);
+        const [amount, setAmount] = React.useState(0);
+        const [flipped, setFlipped] = React.useState(false);
 
         const onChange = (event) => {
-          setMinutes(event.target.value);
+          setAmount(event.target.value);
         };
-        const reset = () => setMinutes(0);
+        const reset = () => setAmount(0);
+        const flip = () => {
+          reset();
+          setFlipped((curr) => !curr);
+        };
 
         return (
           <>
@@ -31,8 +36,9 @@
                 id="minutes"
                 placeholder="Minutes"
                 type="number"
-                value={minutes}
+                value={flipped ? amount * 60 : amount}
                 onChange={onChange}
+                disabled={flipped}
               />
             </div>
             <div>
@@ -41,11 +47,13 @@
                 id="hours"
                 placeholder="Hours"
                 type="number"
-                value={minutes / 60}
-                disabled
+                value={flipped ? amount : amount / 60}
+                onChange={onChange}
+                disabled={!flipped}
               />
             </div>
             <button onClick={reset}>Reset</button>
+            <button onClick={flip}>Flip</button>
           </>
         );
       };
