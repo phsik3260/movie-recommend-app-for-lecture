@@ -15,19 +15,27 @@
       const root = document.getElementById("root");
 
       const App = () => {
-        const [counter, setCounter] = React.useState(0);
+        const [minutes, setMinutes] = React.useState();
 
-        const countUp = () => {
-          // setCounter(counter + 1);
-          setCounter((current) => current + 1);
-          // setState() 내부의 콜백 함수 첫 번째 인자에는 현재의 state 값이 주어진다.
-          // 이 방식은 첫 번째 인자에는 반드시 현재의 state 값이 주어진다는 것이 확실히 보장되기 때문에 훨씬 더 안전한 방법이다.
+        const onChange = (event) => {
+          setMinutes(event.target.value); // setState를 통해 state의 값을 직접 할당하여 변경.
         };
+
+        console.log(minutes); // console을 통해 state의 값을 확인.
 
         return (
           <>
-            <h3 id="title">Total clicks: {counter}</h3>
-            <button onClick={countUp}>Click me</button>
+            <h1>Super Converter</h1>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              value={minutes} // input의 value에 state 값을 할당. 초깃값은 undefined.
+              onChange={onChange} // input의 value 값이 변경될 때마다(onChange event), onChange function이 호출됨.
+            />
+            <label htmlFor="hours">Hours</label>
+            <input id="hours" placeholder="Hours" type="number" />
           </>
         );
       };
