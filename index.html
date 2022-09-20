@@ -15,97 +15,30 @@
       const root = document.getElementById("root");
 
       const App = () => {
-        const [index, setIndex] = React.useState("0");
-
-        const changeSelect = (event) => setIndex(event.target.value);
-
         return (
           <>
-            <h1>Super Converter</h1>
-            <select value={index} onChange={changeSelect}>
-              <option value="0">Minutes & Hours</option>
-              <option value="1">Kms & Miles</option>
-            </select>
-            <hr />
-            {index === "0" ? <MinutesToHours /> : null}
-            {index === "1" ? <KmsToMiles /> : null}
+            <Btn text={"Save"} />
+            {/* 자식 Component에서 구체적인 props의 값들을 설정하고, */}
+            <Btn text={"Continue"} big={true} />
           </>
         );
       };
-      const MinutesToHours = () => {
-        const [amount, setAmount] = React.useState(0);
-        const [flipped, setFlipped] = React.useState(false);
-
-        const onChange = (event) => setAmount(event.target.value);
-        const reset = () => setAmount(0);
-        const flip = () => setFlipped((curr) => !curr);
+      const Btn = (props) => {
+        console.log(props); // 첫 번째 인자이자 유일한 인자인 props는 객체의 형태로 전달된다.
 
         return (
-          <>
-            <h3>Minutes to Hours</h3>
-            <div>
-              <label htmlFor="minutes">Minutes</label>
-              <input
-                id="minutes"
-                type="number"
-                placeholder="Minutes"
-                value={flipped ? amount * 60 : amount}
-                onChange={onChange}
-                disabled={flipped}
-              />
-            </div>
-            <div>
-              <label htmlFor="hours">Hours</label>
-              <input
-                id="hours"
-                type="number"
-                placeholder="Hours"
-                value={flipped ? amount : amount / 60}
-                onChange={onChange}
-                disabled={!flipped}
-              />
-            </div>
-            <button onClick={reset}>Reset</button>
-            <button onClick={flip}>Flip</button>
-          </>
-        );
-      };
-      const KmsToMiles = () => {
-        const [amount, setAmount] = React.useState(0);
-        const [flipped, setFlipped] = React.useState(false);
-
-        const onChange = (event) => setAmount(event.target.value);
-        const reset = () => setAmount(0);
-        const flip = () => setFlipped((curr) => !curr);
-
-        return (
-          <>
-            <h3>Kms to Miles</h3>
-            <div>
-              <label htmlFor="kms">Kms</label>
-              <input
-                id="kms"
-                type="number"
-                placeholder="Kms"
-                value={flipped ? amount / 0.621371 : amount}
-                onChange={onChange}
-                disabled={flipped}
-              />
-            </div>
-            <div>
-              <label htmlFor="miles">Miles</label>
-              <input
-                id="miles"
-                type="number"
-                placeholder="Miles"
-                value={flipped ? amount : amount * 0.621371}
-                onChange={onChange}
-                disabled={!flipped}
-              />
-            </div>
-            <button onClick={reset}>Reset</button>
-            <button onClick={flip}>Flip</button>
-          </>
+          <button
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "5px 10px",
+              margin: "5px",
+              fontSize: props.big ? "24px" : "16px",
+            }}
+          >
+            {props.text}
+            {/* 부모 Component에서 그 값들을 전달받아 활용한다. */}
+          </button>
         );
       };
 
