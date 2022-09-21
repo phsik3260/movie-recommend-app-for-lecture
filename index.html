@@ -15,29 +15,31 @@
       const root = document.getElementById("root");
 
       const App = () => {
+        const [value, setValue] = React.useState("Save");
+
+        const changeValue = () => setValue("Stop");
+
         return (
           <>
-            <Btn text={"Save"} />
-            {/* 자식 Component에서 구체적인 props의 값들을 설정하고, */}
-            <Btn text={"Continue"} big={true} />
+            <Btn text={value} onClick={changeValue} />
+            {/* Custom Component 내에서는 props. */}
+            <Btn text={"Continue"} />
           </>
         );
       };
-      const Btn = (props) => {
-        console.log(props); // 첫 번째 인자이자 유일한 인자인 props는 객체의 형태로 전달된다.
-
+      const Btn = ({ text, onClick }) => {
         return (
           <button
+            onClick={onClick}
+            // HTML Element 내에서는 attributes.
             style={{
               backgroundColor: "tomato",
               color: "white",
               padding: "5px 10px",
               margin: "5px",
-              fontSize: props.big ? "24px" : "16px",
             }}
           >
-            {props.text}
-            {/* 부모 Component에서 그 값들을 전달받아 활용한다. */}
+            {text}
           </button>
         );
       };
