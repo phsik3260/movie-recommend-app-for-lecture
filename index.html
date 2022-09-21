@@ -18,20 +18,24 @@
         const [value, setValue] = React.useState("Save");
 
         const changeValue = () => setValue("Stop");
+        // setState()는 state의 값을 변경하고, 그 값과 함께 해당 Component(App) 전체를 rerendering한다.
 
         return (
           <>
             <Btn text={value} onClick={changeValue} />
-            {/* Custom Component 내에서는 props. */}
             <Btn text={"Continue"} />
+            {/* setState()에 의해 state의 값이 변경될 때, 해당 Component(App) 전체가 rerendering되므로 Continute Btn 또한 rerendering된다. */}
+            {/* 그러나 Continue Btn은 rerendering될 필요가 없다. */}
+            {/* 즉 props와 state가 연결되어 있지 않은 Component에 한해서는, 그 Component를 rerendering할 필요가 없다. */}
           </>
         );
       };
       const Btn = ({ text, onClick }) => {
+        console.log(`${text} Btn was rendered.`);
+
         return (
           <button
             onClick={onClick}
-            // HTML Element 내에서는 attributes.
             style={{
               backgroundColor: "tomato",
               color: "white",
