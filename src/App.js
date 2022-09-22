@@ -8,15 +8,27 @@ const App = () => {
 
   const changeKeyword = (event) => setKeyword(event.target.value);
 
-  useEffect(() => console.log("call api"), []);
+  console.log("I run all time.");
 
+  useEffect(() => console.log("I run only once."), []);
   useEffect(() => {
-    if (keyword === "" || keyword.length < 3) {
+    if (counter === 0) {
       return;
     }
-    // useEffect와 조건문을 결합하여 활용할 수도 있다.
-    console.log(`search for: ${keyword}`);
+    console.log("I run when 'counter' changes.");
+  }, [counter]);
+  useEffect(() => {
+    if (keyword === "") {
+      return;
+    }
+    console.log("I run when 'keyword' changes.");
   }, [keyword]);
+  useEffect(() => {
+    if (counter === 0 || keyword === "") {
+      return;
+    }
+    console.log("I run when 'counter & keyword' changes.");
+  }, [counter, keyword]);
 
   return (
     <>
@@ -27,7 +39,12 @@ const App = () => {
       <br />
       <div>
         <label htmlFor="">Movie Search</label>
-        <input type="text" value={keyword} onChange={changeKeyword} />
+        <input
+          type="text"
+          placeholder="Search here..."
+          value={keyword}
+          onChange={changeKeyword}
+        />
       </div>
     </>
   );
