@@ -10,9 +10,13 @@ const App = () => {
 
   useEffect(() => console.log("call api"), []);
 
-  useEffect(() => console.log(`search for: ${keyword}`), [keyword]);
-  // useEffect의 두 번째 인자인 의존성 배열에 변수를 할당하면, 변수의 값이 변화할 때마다 useEffect의 첫 번째 인자인 function이 호출된다.
-  // 즉 특정한 변수의 값이 바뀔 때마다 원하는 함수를 호출시킬 수 있다.
+  useEffect(() => {
+    if (keyword === "" || keyword.length < 3) {
+      return;
+    }
+    // useEffect와 조건문을 결합하여 활용할 수도 있다.
+    console.log(`search for: ${keyword}`);
+  }, [keyword]);
 
   return (
     <>
