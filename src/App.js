@@ -1,40 +1,36 @@
 import React, { useState, useEffect } from "react";
 
 const App = () => {
-  const [toDo, setToDo] = useState("");
-  const [toDos, setToDos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [coins, setCoins] = useState([]);
 
-  const onChange = (event) => setToDo(event.target.value);
-  const onSubmit = (event) => {
-    event.preventDefault();
-    if (toDo === "") {
-      return;
-    }
-    console.log(toDo);
-    setToDos((currentArray) => [toDo, ...currentArray]);
-    setToDo(""); // state의 값은 반드시 setState()를 통해 변경되어야 한다.
-  };
-
-  useEffect(() => console.log(toDos), [toDos]);
+  useEffect(() => {
+    const url = "https://api.coinpaprika.com/v1/tickers";
+    fetch(url).then((response) =>
+      response.json().then((json) => {
+        setCoins(json);
+        setLoading(false);
+      })
+    );
+  }, []);
 
   return (
     <>
-      <h1>My Todos: {toDos.length}</h1>
-      <form action="" onSubmit={onSubmit}>
-        <input
-          type="text"
-          placeholder="Write a to do..."
-          value={toDo}
-          onChange={onChange}
-        />
-        <button>Add</button>
-      </form>
-      <hr />
-      <ul>
-        {toDos.map((toDo, index) => (
-          <li key={index}>{toDo}</li> // 반드시 각각의 요소에 대한 고유한 key값을 전달해주어야 한다.
-        ))}
-      </ul>
+      {loading ? (
+        <span>get loading...</span>
+      ) : (
+        <div>
+          <h1>The Coins: {coins.length}</h1>
+          <ul>
+            {coins.map((coin) => (
+              <li key={coin.id}>
+                {coin.name} ({coin.symbol}):{" "}
+                {Math.round(coin.quotes.USD.price * 10) / 10}$
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </>
   );
 };
