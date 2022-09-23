@@ -29,6 +29,12 @@ const App = () => {
         />
         <button>Add</button>
       </form>
+      <hr />
+      <ul>
+        {toDos.map((toDo, index) => (
+          <li key={index}>{toDo}</li> // 반드시 각각의 요소에 대한 고유한 key값을 전달해주어야 한다.
+        ))}
+      </ul>
     </>
   );
 };
