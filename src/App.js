@@ -1,24 +1,36 @@
 import React, { useState, useEffect } from "react";
 
 const App = () => {
-  const [showing, setShowing] = useState(false);
+  const [toDo, setToDo] = useState("");
+  const [toDos, setToDos] = useState([]);
 
-  const onClick = () => setShowing((curr) => !curr);
+  const onChange = (event) => setToDo(event.target.value);
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (toDo === "") {
+      return;
+    }
+    console.log(toDo);
+    setToDos((currentArray) => [toDo, ...currentArray]);
+    setToDo(""); // state의 값은 반드시 setState()를 통해 변경되어야 한다.
+  };
+
+  useEffect(() => console.log(toDos), [toDos]);
 
   return (
     <>
-      {showing && <Hello />}
-      <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
+      <h1>My Todos: {toDos.length}</h1>
+      <form action="" onSubmit={onSubmit}>
+        <input
+          type="text"
+          placeholder="Write a to do..."
+          value={toDo}
+          onChange={onChange}
+        />
+        <button>Add</button>
+      </form>
     </>
   );
-};
-const Hello = () => {
-  useEffect(() => {
-    console.log("I'm here!");
-    return () => console.log("destroyed!"); // cleanUp function: 해당 Component가 destroy될 때 호출된다.
-  }, []);
-
-  return <h1>Hello</h1>;
 };
 
 export default App;
