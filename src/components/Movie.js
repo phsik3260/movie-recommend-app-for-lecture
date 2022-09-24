@@ -1,11 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Movie = ({ movie }) => {
   return (
     <div>
-      <img src={movie.medium_cover_image} alt={movie.title} />
+      <Link to="/movie">
+        <img src={movie.medium_cover_image} alt={movie.title} />
+      </Link>
       <div>
-        <h2>{movie.title}</h2>
+        <Link to="/movie">
+          <h2>{movie.title}</h2>
+        </Link>
         <div>{movie.year}</div>
         <div>{movie.rating}</div>
         <ul>
