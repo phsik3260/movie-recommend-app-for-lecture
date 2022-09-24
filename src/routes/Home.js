@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <>
       {loading ? (
-        "get loading..."
+        "get movies..."
       ) : (
         <div>
           {movies.map((movie) => (
