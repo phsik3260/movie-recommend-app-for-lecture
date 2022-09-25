@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const Detail = () => {
   const [loading, setLoading] = useState(true);
@@ -12,7 +13,7 @@ const Detail = () => {
     const url = `https://yts.mx/api/v2/movie_details.json?movie_id=${id}`;
     const json = await (await fetch(url)).json();
     setMovie(json.data.movie);
-    setLoading(false);
+    setTimeout(() => setLoading(false), 1000);
   };
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const Detail = () => {
   return (
     <>
       {loading ? (
-        "get movie..."
+        <Loading text={"get movie..."} />
       ) : (
         <div>
           <h1>{movie.title}</h1>
