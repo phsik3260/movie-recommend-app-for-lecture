@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/movie-recommend-app-for-lecture/static/css/main.6770e8cd.css",
-    "main.js": "/movie-recommend-app-for-lecture/static/js/main.c53bc734.js",
+    "main.js": "/movie-recommend-app-for-lecture/static/js/main.f634e681.js",
     "index.html": "/movie-recommend-app-for-lecture/index.html",
     "main.6770e8cd.css.map": "/movie-recommend-app-for-lecture/static/css/main.6770e8cd.css.map",
-    "main.c53bc734.js.map": "/movie-recommend-app-for-lecture/static/js/main.c53bc734.js.map"
+    "main.f634e681.js.map": "/movie-recommend-app-for-lecture/static/js/main.f634e681.js.map"
   },
   "entrypoints": [
     "static/css/main.6770e8cd.css",
-    "static/js/main.c53bc734.js"
+    "static/js/main.f634e681.js"
   ]
 }
