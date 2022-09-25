@@ -13,7 +13,7 @@ const Movie = ({ movie }) => {
         />
       </Link>
       <div className={styles.movie__data}>
-        <Link to={`/movie/${movie.id}`}>
+        <Link to={`movie/${movie.id}`}>
           <h2 className={styles.movie__data__title}>{movie.title}</h2>
         </Link>
         <div className={styles.movie__data__year}>{movie.year}</div>

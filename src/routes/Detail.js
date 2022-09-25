@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
+import MovieInfo from "../components/MovieInfo";
 
 const Detail = () => {
   const [loading, setLoading] = useState(true);
@@ -27,9 +28,7 @@ const Detail = () => {
       {loading ? (
         <Loading text={"get movie..."} />
       ) : (
-        <div>
-          <h1>{movie.title}</h1>
-        </div>
+        <MovieInfo movie={movie} />
       )}
     </>
   );
